@@ -1,10 +1,14 @@
-import Alpine from 'alpinejs'
-import AlpineFloatingUI from '@awcodes/alpine-floating-ui'
-import NotificationsAlpinePlugin from '../../vendor/filament/notifications/dist/module.esm'
- 
-Alpine.plugin(AlpineFloatingUI)
-Alpine.plugin(NotificationsAlpinePlugin)
- 
-window.Alpine = Alpine
- 
-Alpine.start()
+import { createSSRApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
+
+  createInertiaApp({
+    resolve: name => {
+      const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
+      return pages[`./Pages/${name}.vue`]
+    },
+    setup({ el, App, props, plugin }) {
+     createSSRApp({ render: () => h(App, props) })
+        .use(plugin)
+        .mount(el)
+    }
+});
