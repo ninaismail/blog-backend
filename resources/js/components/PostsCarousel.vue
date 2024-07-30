@@ -53,8 +53,7 @@ onMounted(() => {
         :wrap-around="true"
         class="w-full h-full maskleft">
           <Slide v-for="(item, key) in data" :key="key" class="rounded-[16px] md:aspect-square border-2 border-bg2 my-10">
-            <!-- image should go here -->
-            <div class="w-full h-40 bg-gradient-to-t from-[#1E364D] to-[#1E364D]/10 rounded-t-[16px]"></div>
+            <img :src="item.thumbnail" :alt="item.title" center cover responsive loading="eager" class="aspect-video bg-gradient-to-t from-[#1E364D] to-[#1E364D]/10 rounded-t-[16px]"/>
             <div class="flex flex-col gap-3 p-6 lg:gap-6">
               <!-- <h3 class="text-accent2 font-[200] max-sm:text-[14px]">{{ item.published_at }}</h3> -->
               <h2 class="text-accent1 font-[400] sm:text-lg sm:min-h-[56px] min-h-[56px]">{{ item.title }}</h2>
